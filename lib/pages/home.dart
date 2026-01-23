@@ -80,6 +80,7 @@ class _HomeState extends State<Home> {
             SizedBox(height: 10.0),
 
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                   children: [
@@ -101,7 +102,6 @@ class _HomeState extends State<Home> {
                     Text("T-Shirts", style: AppWidget.boldTextstyle(18.0)),
                   ],
                 ),
-                SizedBox(width: 20.0),
 
                 Column(
                   children: [
@@ -112,7 +112,7 @@ class _HomeState extends State<Home> {
                         borderRadius: BorderRadius.circular(60),
                       ),
                       child: Image.asset(
-                        "images/t-shirt.png",
+                        "images/jeans.png",
                         height: 40,
                         width: 40,
                         fit: BoxFit.cover,
@@ -120,8 +120,159 @@ class _HomeState extends State<Home> {
                       ),
                     ),
                     SizedBox(height: 5.0),
-                    Text("T-Shirts", style: AppWidget.boldTextstyle(18.0)),
+                    Text("Jeans", style: AppWidget.boldTextstyle(18.0)),
                   ],
+                ),
+
+                Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(15.0),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 235, 224, 211),
+                        borderRadius: BorderRadius.circular(60),
+                      ),
+                      child: Image.asset(
+                        "images/dress.png",
+                        height: 40,
+                        width: 40,
+                        fit: BoxFit.cover,
+                        color: Color(0xff6e5038),
+                      ),
+                    ),
+                    SizedBox(height: 5.0),
+                    Text("Dress", style: AppWidget.boldTextstyle(18.0)),
+                  ],
+                ),
+
+                Column(
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(15.0),
+                      decoration: BoxDecoration(
+                        color: Color.fromARGB(255, 235, 224, 211),
+                        borderRadius: BorderRadius.circular(60),
+                      ),
+                      child: Image.asset(
+                        "images/jacket.png",
+                        height: 40,
+                        width: 40,
+                        fit: BoxFit.cover,
+                        color: Color(0xff6e5038),
+                      ),
+                    ),
+                    SizedBox(height: 5.0),
+                    Text("Jacket", style: AppWidget.boldTextstyle(18.0)),
+                  ],
+                ),
+                SizedBox(height: 10.0),
+              ],
+            ),
+            SizedBox(height: 30.0),
+
+            Text("Flash Sale", style: AppWidget.boldTextstyle(22.0)),
+            SizedBox(height: 20.0),
+            Row(
+              children: [
+                Container(
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset(
+                          "images/mens-tshirt.jpg",
+                          height: 200,
+                          width: 190,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Container(
+                        height: 200,
+                        width: 190,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(5.0),
+                              height: 70,
+                              width: 190,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(83, 0, 0, 0),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20),
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "T-Shirt",
+                                    style: AppWidget.whiteTextstyle(18.0),
+                                  ),
+                                  Text(
+                                    "Ksh200",
+                                    style: AppWidget.whiteTextstyle(18.0),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                SizedBox(width: 20.0),
+
+                Container(
+                  child: Stack(
+                    children: [
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(20),
+                        child: Image.asset(
+                          "images/men-shirt.png",
+                          height: 200,
+                          width: 190,
+                          fit: BoxFit.cover,
+                        ),
+                      ),
+                      Container(
+                        height: 200,
+                        width: 190,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Container(
+                              padding: EdgeInsets.all(5.0),
+                              height: 70,
+                              width: 190,
+                              decoration: BoxDecoration(
+                                color: Color.fromARGB(83, 0, 0, 0),
+                                borderRadius: BorderRadius.only(
+                                  bottomLeft: Radius.circular(20),
+                                  bottomRight: Radius.circular(20),
+                                ),
+                              ),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    "Men's Shirt",
+                                    style: AppWidget.whiteTextstyle(18.0),
+                                  ),
+                                  Text(
+                                    "Ksh100",
+                                    style: AppWidget.whiteTextstyle(18.0),
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
