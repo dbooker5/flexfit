@@ -9,4 +9,13 @@ class AppWidget {
       fontFamily: "Roboto",
     );
   }
+
+  static TextStyle whiteTextstyle(double size) {
+    return TextStyle(
+      color: Colors.white,
+      fontSize: size,
+      fontWeight: FontWeight.bold,
+      fontFamily: "Roboto",
+    );
+  }
 }
