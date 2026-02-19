@@ -42,4 +42,12 @@ class AppWidget {
       child: Center(child: Text(size, style: AppWidget.whiteTextstyle(18.0))),
     );
   }
+
+  static TextStyle greenTextstyle(double size) {
+    return TextStyle(
+      color: Color(0xff494b2b),
+      fontFamily: "Roboto",
+      fontSize: size,
+    );
+  }
 }
