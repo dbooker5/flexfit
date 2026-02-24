@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "561330236464",
+    "project_id": "flexfit-c6e90",
+    "storage_bucket": "flexfit-c6e90.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:561330236464:android:7371f60a8c1fe8afb9d1f5",
+        "android_client_info": {
+          "package_name": "com.example.flexfit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "561330236464-ejl1uefk8q70oru484mv3qobetfi1q3h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyChimcx7a7gTYK42LX5bQvqFe6y87t-gkw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "561330236464-ejl1uefk8q70oru484mv3qobetfi1q3h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
