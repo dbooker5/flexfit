@@ -1,9 +1,11 @@
 import 'dart:io';
 
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:random_string/random_string.dart';
 
+import '../services/database.dart';
 import '../widgets/support_widget.dart';
 
 class AddProduct extends StatefulWidget {
@@ -22,6 +24,7 @@ class _AddProductState extends State<AddProduct> {
   TextEditingController detailController = TextEditingController();
 
   String? value;
+  bool isUploading = false;
 
   final List<String> clothingCategory = ['T-Shirt', 'Pant', 'Dress', 'Jacket'];
 
@@ -40,15 +43,57 @@ class _AddProductState extends State<AddProduct> {
         priceController.text.isNotEmpty &&
         detailController.text.isNotEmpty &&
         value != null) {
-      String addId = randomAlphaNumeric(10);
+      setState(() => isUploading = true);
 
-      // Logic for Firebase Storage and Firestore will go here next
-      print("Ready to upload product: $addId");
+      try {
+        String addId = randomAlphaNumeric(10);
+
+        Reference firebaseStorageRef = FirebaseStorage.instance
+            .ref()
+            .child("productImages")
+            .child(addId);
+
+        final UploadTask task = firebaseStorageRef.putFile(selectedImage!);
+        var downloadUrl = await (await task).ref.getDownloadURL();
+
+        // B. Prepare Product Map with the Image URL
+        Map<String, dynamic> addProduct = {
+          "Image": downloadUrl,
+          "Name": nameController.text.trim(),
+          "Price": priceController.text.trim(),
+          "Category": value,
+          "Detail": detailController.text.trim(),
+        };
+
+        await DatabaseMethods().addProducts(addProduct);
+
+        if (!mounted) return;
+        setState(() {
+          selectedImage = null;
+          nameController.clear();
+          priceController.clear();
+          detailController.clear();
+          value = null;
+        });
+
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(
+            backgroundColor: Colors.green,
+            content: Text("Product Added Successfully!"),
+          ),
+        );
+      } catch (e) {
+        ScaffoldMessenger.of(
+          context,
+        ).showSnackBar(SnackBar(content: Text("Error: ${e.toString()}")));
+      } finally {
+        if (mounted) setState(() => isUploading = false);
+      }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           backgroundColor: Colors.redAccent,
-          content: Text("Please fill all the fields"),
+          content: Text("Please fill all fields and select an image"),
         ),
       );
     }
@@ -142,7 +187,7 @@ class _AddProductState extends State<AddProduct> {
               const SizedBox(height: 20.0),
               _buildLabel("Product Detail"),
               _buildInputField(
-                nameController,
+                detailController,
                 "Enter Product Detail",
                 isMultiline: true,
               ),
@@ -150,15 +195,18 @@ class _AddProductState extends State<AddProduct> {
               SizedBox(height: 40.0),
 
               Center(
-                child: Container(
-                  height: 50,
-                  width: 200,
-                  decoration: BoxDecoration(
-                    color: Color(0xff6e5038),
-                    borderRadius: BorderRadius.circular(60),
-                  ),
-                  child: Center(
-                    child: Text("Add", style: AppWidget.whiteTextstyle(20)),
+                child: GestureDetector(
+                  onTap: isUploading ? null : uploadItem,
+                  child: Container(
+                    height: 50,
+                    width: 200,
+                    decoration: BoxDecoration(
+                      color: Color(0xff6e5038),
+                      borderRadius: BorderRadius.circular(60),
+                    ),
+                    child: Center(
+                      child: Text("Add", style: AppWidget.whiteTextstyle(20)),
+                    ),
                   ),
                 ),
               ),
