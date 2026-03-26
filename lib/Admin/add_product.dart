@@ -54,7 +54,10 @@ class _AddProductState extends State<AddProduct> {
             .child(addId);
 
         final UploadTask task = firebaseStorageRef.putFile(selectedImage!);
-        var downloadUrl = await (await task).ref.getDownloadURL();
+
+        TaskSnapshot snapshot = await task.whenComplete(() => {});
+
+        String downloadUrl = await snapshot.ref.getDownloadURL();
 
         // B. Prepare Product Map with the Image URL
         Map<String, dynamic> addProduct = {
